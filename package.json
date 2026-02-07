@@ -3,5 +3,9 @@
   "version": "1.0.0",
   "bin": {
     "sr-cli": "./bin/cli.js"
+  },
+  "dependencies": {
+    "commander": "^12.1.0",
+    "fs-extra": "^11.3.0"
   }
 }
