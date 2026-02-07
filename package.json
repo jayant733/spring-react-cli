@@ -1,0 +1,7 @@
+{
+  "name": "spring-react-cli",
+  "version": "1.0.0",
+  "bin": {
+    "sr-cli": "./bin/cli.js"
+  }
+}
