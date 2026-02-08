@@ -30,14 +30,16 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestBody User user) {
-        User dbUser = userRepository.findByEmail(user.getEmail())
-                .orElseThrow();
+public String login(@RequestBody LoginRequest request) {
 
-        if (!passwordEncoder.matches(user.getPassword(), dbUser.getPassword())) {
-            throw new RuntimeException("Invalid credentials");
-        }
+    User dbUser = userRepository.findByEmail(request.getEmail())
+            .orElseThrow(() -> new RuntimeException("User not found"));
 
-        return jwtService.generateToken(dbUser.getEmail());
+    if (!passwordEncoder.matches(request.getPassword(), dbUser.getPassword())) {
+        throw new RuntimeException("Invalid credentials");
     }
+
+    return jwtService.generateToken(dbUser.getEmail());
+}
+
 }
